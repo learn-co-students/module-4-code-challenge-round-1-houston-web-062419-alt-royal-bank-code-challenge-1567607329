@@ -21,7 +21,7 @@ const CategorySelector = (props) => {
 
 
   return (
-    <div className="sixteen wide column">
+    <div className="sixteen wide column" onChange={(e)=> props.handleChange(e)}>
       <div className="ui form">
         <div className="inline fields">
           { categoryFields }
