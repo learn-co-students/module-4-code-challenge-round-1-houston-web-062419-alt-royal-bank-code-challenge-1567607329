@@ -1,34 +1,38 @@
 import React from 'react'
+import Transaction from './Transaction'
 
-const TransactionsList = () => {
-
+const TransactionsList = (props) => {
+console.log(props.transactions)
   return (
     <table className="ui celled striped padded table">
       <tbody>
         <tr>
           <th>
             <h3 className="ui center aligned header">
-              Posted At
+              {/* {props.posted_at} */}
             </h3>
           </th>
           <th>
             <h3 className="ui center aligned header">
               Description
+              {/* {props.description} */}
             </h3>
           </th>
           <th>
             <h3 className="ui center aligned header">
               Category
+              {/* {props.category} */}
             </h3>
           </th>
           <th>
             <h3 className="ui center aligned header">
               Amount
+           
             </h3>
           </th>
         </tr>
 
-        {/* "... your code here..." */}
+      {props.transactions.map(transaction=> <Transaction {...transaction}/>)}
 
       </tbody>
     </table>
