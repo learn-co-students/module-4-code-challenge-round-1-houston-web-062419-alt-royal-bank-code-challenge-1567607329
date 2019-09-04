@@ -7,7 +7,7 @@ const CategoryField = (props) => {
     <div className=" four wide field">
       <div className="ui radio checkbox">
 
-        <input
+        <input onChange={(e)=> props.filterTransactions(category)}
           type="radio"
           name="category"
           checked={ checked }

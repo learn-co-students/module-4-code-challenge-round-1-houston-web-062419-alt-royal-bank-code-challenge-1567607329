@@ -10,7 +10,7 @@ const CategorySelector = (props) => {
      const checked = category === props.activeCategory
 
       return (
-        <CategoryField
+        <CategoryField filterTransactions={(e)=>props.filterTransactions(category)}
           key={ i }
           checked={ checked }
           category={ category }
