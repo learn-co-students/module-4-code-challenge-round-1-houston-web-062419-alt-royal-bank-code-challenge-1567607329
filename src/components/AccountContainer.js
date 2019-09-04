@@ -6,11 +6,35 @@ import {transactions} from '../transactionsData'
 class AccountContainer extends Component {
   constructor() {
     super()
-    //... your code here
+    this.state = {
+      transactions: [], 
+      displayTransactions: [], 
+    };
   }
 
-  handleChange() {
-    //... your code here
+  componentDidMount() {
+    fetch('https://boiling-brook-94902.herokuapp.com/transactions')
+      .then(responseObj => responseObj.json())
+      .then(data => { console.log(data)
+          this.setState({
+            transactions: data,
+            displayTransactions: data,
+          })
+      })
+  }
+
+  filterTransactions = (category) => {
+    let arr = this.state.displayTransactions.filter(transaction => transaction.category === category)
+      if (category !=="All"){
+        this.setState({
+          displayTransactions:arr
+        })
+      }else{
+        this.setState({
+          displayTransactions:this.state.transactions
+        })
+      }
+    console.log(category)
   }
 
   render() {
@@ -18,9 +42,9 @@ class AccountContainer extends Component {
     return (
       <div className="ui grid container">
 
-        <CategorySelector />
+        <CategorySelector filterTransactions={this.filterTransactions}/>
 
-        <TransactionsList />
+        <TransactionsList displayTransactions={this.state.displayTransactions}/>
 
       </div>
     )
